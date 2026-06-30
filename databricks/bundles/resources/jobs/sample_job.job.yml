@@ -24,12 +24,12 @@ resources:
       tasks:
         - task_key: notebook_task
           notebook_task:
-            notebook_path: ../src/sample_notebook.ipynb
+            notebook_path: ../../../../notebooks/exploratory/sample_notebook.ipynb
         - task_key: python_wheel_task
           depends_on:
             - task_key: notebook_task
           python_wheel_task:
-            package_name: setup_client
+            package_name: db_nse_streaming
             entry_point: main
             parameters:
               - "--catalog"

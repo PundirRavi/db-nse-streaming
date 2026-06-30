@@ -1,11 +1,18 @@
 # This is a Databricks asset bundle definition for setup_client.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
 bundle:
-  name: setup_client
+  name: db_nse_streaming
   uuid: 0e4f7662-88d9-4635-a9ac-f6553c5b2000
 
+sync:
+  paths:
+    - ../../notebooks
+    - ../../dist
+    - ../../src
+
 include:
-  - resources/*.yml
+  - resources/jobs/*.yml
+  - resources/pipelines/*.yml
 
 artifacts:
   python_artifact:
@@ -39,7 +46,7 @@ targets:
       # We explicitly deploy to /Workspace/Users/ravi.kumar@intelegencia.com to make sure we only have a single copy.
       root_path: /Workspace/Users/ravi.kumar@intelegencia.com/.bundle/${bundle.name}/${bundle.target}
     variables:
-      catalog: dev_db
+      catalog: prod_db
       schema: prod
     permissions:
       - user_name: ravi.kumar@intelegencia.com
